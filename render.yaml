@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: mint-watch
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --worker-class gthread --threads 8 --timeout 120 app:app
+    envVars:
+      - key: TWITTER_BEARER_TOKEN
+        sync: false
